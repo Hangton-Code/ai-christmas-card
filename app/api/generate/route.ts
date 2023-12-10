@@ -20,8 +20,10 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  if (process.env.NODE_ENV === "production") {
-    const ip = request.ip ?? "127.0.0.1";
+  if (process.env.NODE_ENV !== "production") {
+    const ip = (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
+      ","
+    )[0];
     const ipLimit = await redis.get(`ip-limit|${ip}`);
     if (ipLimit && ipLimit !== zodResult.data.name) {
       return NextResponse.json({
