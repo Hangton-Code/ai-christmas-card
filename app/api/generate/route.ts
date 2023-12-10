@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { openai } from "@/lib/ai";
 import { z } from "zod";
-import { kv } from "@vercel/kv";
+import { redis } from "@/lib/redis";
 
 export const dynamic = "force-dynamic"; // defaults to force-static
 
@@ -22,17 +22,17 @@ export async function POST(request: NextRequest) {
 
   if (process.env.NODE_ENV === "production") {
     const ip = request.ip ?? "127.0.0.1";
-    const ipLimit = await kv.get(`ip-limit|${ip}`);
+    const ipLimit = await redis.get(`ip-limit|${ip}`);
     if (ipLimit && ipLimit !== zodResult.data.name) {
       return NextResponse.json({
         error: `${ipLimit}, 都話只能夠睇一次!`,
       });
     }
 
-    await kv.set(`ip-limit|${ip}`, zodResult.data.name);
+    await redis.set(`ip-limit|${ip}`, zodResult.data.name);
   }
 
-  const generatedContent = await kv.get(`card|${zodResult.data.name}`);
+  const generatedContent = await redis.get(`card|${zodResult.data.name}`);
   if (generatedContent)
     return NextResponse.json({
       content: generatedContent,
@@ -48,9 +48,9 @@ export async function POST(request: NextRequest) {
     ],
     model: "gpt-3.5-turbo",
   });
-  const content = chatCompletion.choices[0].message.content;
+  const content = chatCompletion.choices[0].message.content || "";
 
-  await kv.set(`card|${zodResult.data.name}`, content);
+  await redis.set(`card|${zodResult.data.name}`, content);
 
   return NextResponse.json({
     content,
