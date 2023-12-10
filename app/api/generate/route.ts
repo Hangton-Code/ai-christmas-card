@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { openai } from "@/lib/ai";
 import { z } from "zod";
-import { Ratelimit } from "@upstash/ratelimit";
 import { kv } from "@vercel/kv";
 
 export const dynamic = "force-dynamic"; // defaults to force-static
