@@ -126,7 +126,7 @@ export default function Home() {
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <p>
-                      啲嘢係唔係好九唔搭八呢？哈哈，其實這個內容是由AI生成。唔知道你又睇唔睇得出？（其實都好難睇唔出）
+                      啲嘢係唔係好九唔搭八呢？AI即時生成算係咁啦。唔知道你又睇唔睇得出？（其實都好難睇唔出）
                       <br />
                       <br />
                       無論如何。聖誕快樂。<del>愚人節快樂</del>
