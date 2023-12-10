@@ -45,7 +45,7 @@ export default function Home() {
 
       if (data.error) throw new Error(data.error);
 
-      return data.content?.replace("親愛的", "").replace("愛你的", "") || "";
+      return data.content || "";
     },
     onError(error) {
       toast({
@@ -88,7 +88,7 @@ export default function Home() {
         <form className="w-full max-w-md flex md:space-x-2" onSubmit={onSubmit}>
           <Input
             type="text"
-            placeholder="你的全名 Eg.陳大文"
+            placeholder="Your English Nick Name Eg.Tom/John"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />

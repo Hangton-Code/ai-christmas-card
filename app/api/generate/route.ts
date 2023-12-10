@@ -44,8 +44,9 @@ export async function POST(request: NextRequest) {
     messages: [
       {
         role: "user",
-        content: `我的名字是Hangton 聖誕節就嚟到 我而家寫緊聖誕卡俾我的同學${zodResult.data.name} 你可唔可以幫我寫聖誕卡嘅內容?
-盡量用廣東話詞語 不多於200字 主題可以同新年、過去一年、聖誕氣氛、食物、運動、遊戲、聖誕歌、考試有關 內容越九唔搭八越好 不要有類似親愛的、愛你的等字眼`,
+        content: `My name is Hangton. Christmas is coming and I am writing a Christmas card for my classmates ${zodResult.data.name}.
+Can you help me write the content of the Christmas card?
+Try to use no more than 100 words in English. The theme can be the same as the New Year, the past year, Christmas atmosphere, food, sports, games, Christmas songs, and exam-related content. The more inconsistent the better, the better. Must not use words like "dear" or "love"`,
       },
     ],
     model: "gpt-3.5-turbo",
