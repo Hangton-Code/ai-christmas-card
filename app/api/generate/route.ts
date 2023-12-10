@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    await redis.set(`ip-limit|${ip}`, zodResult.data.name);
+    if (!ipLimit) await redis.set(`ip-limit|${ip}`, zodResult.data.name);
   }
 
   const generatedContent = await redis.get(`card|${zodResult.data.name}`);
