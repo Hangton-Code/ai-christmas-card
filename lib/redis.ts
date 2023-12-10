@@ -1,13 +1,22 @@
-import Redis from "ioredis";
+import { Redis } from "@upstash/redis";
 
 const getRedisUrl = () => {
-  if (process.env.REDIS_URL) {
-    return process.env.REDIS_URL;
+  if (process.env.UPSTASH_REDIS_URL) {
+    return process.env.UPSTASH_REDIS_URL;
   }
 
-  throw new Error("REDIS_URL is not defined");
+  throw new Error("UPSTASH_REDIS_URL is not defined");
 };
 
-export const redis = new Redis(getRedisUrl(), {
-  tls: {},
+const getRedisToken = () => {
+  if (process.env.UPSTASH_REDIS_TOKEN) {
+    return process.env.UPSTASH_REDIS_TOKEN;
+  }
+
+  throw new Error("UPSTASH_REDIS_TOKEN is not defined");
+};
+
+export const redis = new Redis({
+  url: getRedisUrl(),
+  token: getRedisToken(),
 });
