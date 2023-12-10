@@ -70,7 +70,7 @@ export default function Home() {
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          className="w-full aspect-video rounded-lg"
+          className="w-full aspect-video rounded-md"
         ></iframe>
 
         <div>
@@ -118,8 +118,10 @@ export default function Home() {
                 <Collapsible>
                   <CollapsibleTrigger asChild>
                     <div className="bg-white py-4 text-center cursor-pointer w-full flex justify-center items-center">
-                      <span>展開更多</span>
-                      <CaretDownIcon width={24} height={24} />
+                      <div className="bg-red-500 text-white flex justify-center items-center">
+                        -- 展開更多
+                        <CaretDownIcon width={24} height={24} />
+                      </div>
                     </div>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
@@ -143,6 +145,16 @@ export default function Home() {
                       明日燈飾必須拆下 換到歡呼聲不過一剎
                       <br />
                       換到歡呼聲不過一剎🎶
+                      <br />
+                      <br />
+                      <iframe
+                        src="https://www.youtube.com/embed/3KtQ4pTESDY"
+                        title="Queen Elizabeth II Saying Happy Christmas Form 1957 - 2021"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="w-full aspect-video rounded"
+                      />
                     </p>
                   </CollapsibleContent>
                 </Collapsible>
