@@ -45,7 +45,7 @@ export default function Home() {
 
       if (data.error) throw new Error(data.error);
 
-      return data.content?.replace("親愛的", "") || "";
+      return data.content?.replace("親愛的", "").replace("愛你的", "") || "";
     },
     onError(error) {
       toast({
@@ -119,7 +119,7 @@ export default function Home() {
                   <CollapsibleTrigger asChild>
                     <div className="bg-white py-4 text-center cursor-pointer w-full flex justify-center items-center">
                       <div className="bg-red-500 text-white flex justify-center items-center">
-                        -- 展開更多
+                        -- 展開全部
                         <CaretDownIcon width={24} height={24} />
                       </div>
                     </div>
