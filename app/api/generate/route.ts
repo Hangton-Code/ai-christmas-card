@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV === "production") {
     const ip = (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
       ","
     )[0];
